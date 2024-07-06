@@ -14,7 +14,7 @@ class Translation:
         for lang in languages:
             try:
                 translated = GoogleTranslator(
-                    source='auto', target=lang).translate(text)
+                    source='auto', target=lang.strip()).translate(text.strip())
                 translated_arr.append({lang: translated})
             except:
                 translated_arr.append({lang: "Language is invalid."})

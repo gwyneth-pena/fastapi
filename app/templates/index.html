@@ -22,7 +22,7 @@
         <h1 class="text-white">Translator</h1>
       </a>
     </nav>
-    <div class="container my-5">
+    <div class="container my-4">
       <div class="row d-flex align-items-center justify-content-center">
         <div class="column w-75">
           <form id="translatorForm">
@@ -49,7 +49,7 @@
                 placeholder="eg. es,fr,de"
               />
             </div>
-            <div class="progress mt-3">
+            <div class="progress mt-3" style="height: 0">
               <div
                 id="progressBar"
                 class="progress-bar progress-bar-striped bg-primary"
@@ -58,14 +58,13 @@
             </div>
             <div class="my-3 hide" id="translationResultCont">
               <p class="fw-bold">Translation Result:</p>
-              <pre>Translate</pre>
             </div>
 
             <div class="d-grid my-4">
               <button class="btn btn-primary" type="submit">Translate</button>
             </div>
           </form>
-          <form>
+          <div>
             <div class="mt-4 form-group">
               <label for="translationID" class="form-label"
                 >Check Translation by ID</label
@@ -78,14 +77,22 @@
               />
             </div>
             <div class="d-flex mt-3">
-              <button type="submit" class="btn btn-info text-white me-2">
+              <button
+                type="button"
+                onclick="checkStatus()"
+                class="btn btn-info text-white me-2"
+              >
                 Check Status
               </button>
-              <button type="submit" class="btn btn-secondary text-white me-2">
+              <button
+                type="button"
+                onclick="checkContent()"
+                class="btn btn-secondary text-white me-2"
+              >
                 Check Content
               </button>
             </div>
-          </form>
+          </div>
         </div>
       </div>
     </div>
