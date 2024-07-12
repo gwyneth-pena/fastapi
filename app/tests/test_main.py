@@ -2,5 +2,5 @@ import pytest
 
 
 class TestMain():
-    def __init__():
+    def setup_method():
         pass
