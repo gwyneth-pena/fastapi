@@ -3,6 +3,8 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, scoped_session
 from sqlalchemy_utils import database_exists, create_database
 
+from ..main import app
+
 from ..models import Base
 
 user = os.environ.get('DB_USER', 'root')
@@ -26,3 +28,13 @@ except:
 
 Session = scoped_session(sessionmaker(bind=engine))
 db_session = Session
+
+
+def override_get_db():
+    try:
+        yield db_session
+    except:
+        db_session.close()
+
+
+app.dependency_overrides['get_db'] = override_get_db

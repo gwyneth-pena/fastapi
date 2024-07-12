@@ -4,7 +4,7 @@ const translatorForm = document.getElementById("translatorForm");
 const progressBar = document.getElementById("progressBar");
 const translationResultCont = document.getElementById("translationResultCont");
 const translationID = document.getElementById("translationID");
-const baseUrl = "http://127.0.0.1:8000";
+const baseUrl = "http://127.0.0.1:8080";
 let translationObj = {};
 
 async function getStatus(taskId) {
@@ -105,9 +105,13 @@ async function checkStatus() {
   if (translationIDVal) {
     try {
       const res = await getStatus(translationIDVal);
-      alert(
-        `Status for translation ID (${translationIDVal}) is: ${res.status.toUpperCase()}`
-      );
+      if (res.status) {
+        alert(
+          `Status for translation ID (${translationIDVal}) is: ${res.status.toUpperCase()}`
+        );
+      } else {
+        alert("Invalid translation ID. Try again.");
+      }
     } catch (e) {
       alert("Invalid translation ID. Try again.");
     }
@@ -119,16 +123,20 @@ async function checkContent() {
   if (translationIDVal) {
     try {
       const res = await getStatus(translationIDVal);
-      let content = `Text to be translated: ${res.text}\nTranslations:`;
-      res.translation.forEach((translation) => {
-        const key = Object.keys(translation)[0];
-        content += `\n${key.toUpperCase()}: ${translation[key]}`;
-      });
+      if (res.id) {
+        let content = `Text to be translated: ${res.text}\nTranslations:`;
+        res.translation.forEach((translation) => {
+          const key = Object.keys(translation)[0];
+          content += `\n${key.toUpperCase()}: ${translation[key]}`;
+        });
 
-      alert(
-        `\nContent for translation ID (${translationIDVal}) is: \n${content}`
-      );
-      translationID.value = "";
+        alert(
+          `\nContent for translation ID (${translationIDVal}) is: \n${content}`
+        );
+        translationID.value = "";
+      } else {
+        alert("Invalid translation ID. Try again.");
+      }
     } catch (e) {
       alert("Invalid translation ID. Try again.");
     }

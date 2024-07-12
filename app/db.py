@@ -25,3 +25,10 @@ except:
 
 Session = scoped_session(sessionmaker(bind=engine))
 db_session = Session
+
+
+def getDB():
+    try:
+        yield db_session
+    except:
+        db_session.close()

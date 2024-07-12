@@ -42,4 +42,6 @@ class Translation:
 
     def get_translation(self):
         task = self.__db.get(TranslationTask, self.__args.get('task_id', ''))
+        if task is None:
+            return None
         return task
