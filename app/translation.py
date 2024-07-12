@@ -1,6 +1,6 @@
 from deep_translator import GoogleTranslator
 from sqlalchemy.orm import Session
-from .models import TranslationTask
+from models import TranslationTask
 import json
 
 

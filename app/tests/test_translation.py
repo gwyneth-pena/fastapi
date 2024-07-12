@@ -20,6 +20,7 @@ class TestTranslation():
             self. __task.id = ''
 
         assert self.__task.id != ''
+        assert self.__task.status == 'ongoing'
 
         self.__args = {
             'task_id': self.__task.id,
@@ -32,6 +33,7 @@ class TestTranslation():
         self.__task = task
 
         assert len(self.__task.translation) == 2
+        assert self.__task.status == 'completed'
         assert self.__task.translation[0].get('filipino') == 'Magandang umaga!'
         assert self.__task.translation[1].get('korean') == '좋은 아침이에요!'
 

@@ -5,6 +5,21 @@ from ..translation import Translation
 
 
 @pytest.fixture()
+def tranlation_task_db_mock():
+    return [{
+            'id': 6,
+            'text': 'Good morning',
+            'languages': ['japanese', 'filipino', 'spanish', 'english'],
+            'status': 'completed',
+            'translation': [
+                {'japanese': 'おはよう'},
+                {'filipino': 'Magandang umaga'},
+                {'spanish': 'Buen día'}
+            ]
+            }]
+
+
+@pytest.fixture()
 def save_translation():
     args = {
         'text': "Good morning!",

@@ -7,6 +7,8 @@ from fastapi.templating import Jinja2Templates
 from schemas import TaskResponse, TranslationStatus, TranslationPost
 from fastapi.middleware.cors import CORSMiddleware
 from translation import Translation
+import sys
+import asyncio
 from db import db_session
 
 app = FastAPI()
@@ -22,12 +24,13 @@ app.add_middleware(
 
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
+
 templates = Jinja2Templates(directory="templates")
 
 
 @app.get('/', response_class=HTMLResponse)
 def index(req: Request):
-    return templates.TemplateResponse("index.html", {"request": req})
+    return templates.TemplateResponse(req, "index.html", )
 
 
 @app.post('/translate', response_model=TaskResponse)
@@ -59,3 +62,7 @@ def translate(task_id: Union[str, int]):
 
     except:
         return HTMLResponse(content={"message": "Something went wrong."}, status_code=500)
+
+
+if sys.platform == "win32" and (3, 8, 0) <= sys.version_info < (3, 9, 0):
+    asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())

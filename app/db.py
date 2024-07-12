@@ -3,7 +3,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, scoped_session
 from sqlalchemy_utils import database_exists, create_database
 
-from .models import Base
+from models import Base
 
 user = os.environ.get('DB_USER', 'root')
 pwd = os.environ.get('DB_PASS', 'pass')
