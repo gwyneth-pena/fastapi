@@ -18,7 +18,7 @@ set DB_PASS=pass
 5. cd ./app
 6. python main.py
 
-run tests
+Run tests
 
 cd ./app
 <br />
