@@ -9,9 +9,11 @@ from ..models import Base
 
 user = os.environ.get('DB_USER', 'root')
 pwd = os.environ.get('DB_PASS', 'pass')
+host = os.environ.get('DB_HOST', 'host')
+
 
 engine = create_engine(
-    'mysql://{0}:{1}@localhost:3306/translator_test'.format(user, pwd))
+    'mysql://{0}:{1}@{2}:3306/translator_test'.format(user, pwd, host))
 
 
 if not database_exists(engine.url):
