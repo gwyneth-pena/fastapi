@@ -123,7 +123,7 @@ async function checkContent() {
   if (translationIDVal) {
     try {
       const res = await getStatus(translationIDVal);
-      if (res.id) {
+      if (res.task_id) {
         let content = `Text to be translated: ${res.text}\nTranslations:`;
         res.translation.forEach((translation) => {
           const key = Object.keys(translation)[0];

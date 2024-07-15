@@ -4,14 +4,14 @@ from fastapi.responses import HTMLResponse
 from fastapi import FastAPI, Request, BackgroundTasks, Depends
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
-from schemas import TaskResponse, TranslationStatus, TranslationPost
+from .schemas import TaskResponse, TranslationStatus, TranslationPost
 from fastapi.middleware.cors import CORSMiddleware
-from translation import Translation
+from .translation import Translation
 from sqlalchemy.orm import Session
 import sys
 import asyncio
 import uvicorn
-from db import getDB
+from .db import getDB
 
 app = FastAPI()
 
@@ -24,10 +24,10 @@ app.add_middleware(
 )
 
 
-app.mount("/static", StaticFiles(directory="static"), name="static")
+app.mount("/static", StaticFiles(directory="./app/static"), name="static")
 
 
-templates = Jinja2Templates(directory="templates")
+templates = Jinja2Templates(directory="./app/templates")
 
 
 @app.get('/', response_class=HTMLResponse)
